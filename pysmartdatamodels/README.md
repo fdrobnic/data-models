@@ -200,6 +200,10 @@ print(sdm.validate_dcat_ap_distribution_sdm(content_DCAT))
 print("25:")
 print(sdm.subject_for_datamodel(dataModel))
 
+# Return a fake normalized ngsi-ld format example based on the given json schema (passed as a string)
+print("26 : ")
+print(sdm.ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str))
+
 ```
 
 ## Functions available include:
@@ -439,20 +443,6 @@ print(sdm.subject_for_datamodel(dataModel))
           if there's any problem related to input parameter and json schema:
               False
 
-Function ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str)
-
-        It returns a fake normalized ngsi-ld format example based on the given json schema
-            Parameters:
-                schema: schema.json contents
-                dataModel: repo name
-                subject: model name
-
-            Returns:
-                if the input parameter exists and the json schema is a valide json:
-                    a fake normalized ngsi-ld format example stored in dictionary format
-                if there's any problem related to input parameter and json schema:
-                    False
-
 18- Return a fake key value ngsi-ld format example. Function ngsi_ld_keyvalue_example_generator(schemaUrl)
 
         It returns a fake key value ngsi-ld format example based on the given json schema
@@ -590,6 +580,20 @@ Function ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str
            An array (always) if there is only one element with the names of the subjects
            Usually only one element in the array isa returned because there are few clashes in data model names
            False if no subject is found         
+
+26- Return a fake normalized ngsi-ld format example. Function ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str)
+
+        It returns a fake normalized ngsi-ld format example based on the given json schema
+            Parameters:
+                schema: schema.json contents
+                dataModel: repo name
+                subject: model name
+
+            Returns:
+                if the input parameter exists and the json schema is a valide json:
+                    a fake normalized ngsi-ld format example stored in dictionary format
+                if there's any problem related to input parameter and json schema:
+                    False
 
 ## Pending features (glad to receive contributions to them)
 
