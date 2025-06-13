@@ -31,7 +31,41 @@ Currently, there are thirteen domains.
 
 ```python
 
-from pysmartdatamodels import pysmartdatamodels as sdm
+import pysmartdatamodels as sdm
+
+def open_jsonref(fileUrl: str):
+    import requests
+    import jsonref
+    """
+    Opens a JSON file given its URL or path and returns the loaded content as a JSON object.
+    Capable of parsing JSON file with $ref
+    Parameters:
+    - file_url (str): The URL or path of the JSON file.
+    Returns:
+    - dict: The loaded JSON content if successful, none otherwise.
+    Example:
+    open_jsonref("https://example.com/data.json")
+    {...}
+    open_jsonref("local_file.json")
+    {...}
+    open_jsonref("invalid-url")
+    None
+    """
+    if fileUrl[0:4] == "http":
+        # es URL
+        try:
+            pointer = requests.get(fileUrl)
+            output = jsonref.loads(pointer.content.decode('utf-8'), load_on_repr=True, merge_props=True)
+            return output
+        except:
+            return None
+    else:
+        # es file
+        try:
+            file = open(fileUrl, "r")
+            return jsonref.loads(file.read(), load_on_repr=True, merge_props=True)
+        except:
+            return None
 
 subject = "dataModel.Weather"
 
@@ -43,45 +77,65 @@ serverUrl = "https://smartdatamodels.org:1026"
 
 value = 0.5
 
-schemaUrl = "https://raw.githubusercontent.com/smart-data-models/dataModel.Agrifood/master/AgriApp/schema.json"
+schemaUrl = "https://smart-data-models.github.io/dataModel.Agrifood/AgriApp/schema.json"
+
+modelYaml = "https://raw.githubusercontent.com/smart-data-models/dataModel.Transportation/master/FareCollectionSystem/model.yaml"
+
+DCATAPExampleUrl = "https://raw.githubusercontent.com/smart-data-models/dataModel.DCAT-AP/master/Distribution/examples/example.json"
+
+content_DCAT = open_jsonref(DCATAPExampleUrl)
+
 
 # Load all datamodels in a dict like the official list
+print("1 : ")
 print(sdm.load_all_datamodels())
 
 # Load all attributes in a dict like the official export of attributes
-print(len(sdm.load_all_attributes()))   # there is more than 30.000 to get all listed
+print("2 : ")
+print(len(sdm.load_all_attributes()))   # there is more than 155.000 to get all listed
 
 # List all data models
+print("3 : ")
 print(sdm.list_all_datamodels())
 
 # List all subjects
+print("4 : ")
 print(sdm.list_all_subjects())
 
 # List the data models of a subject
+print("5 : ")
 print(sdm.datamodels_subject("dataModel.Weather"))
 
 # List description of an attribute
+print("6 : ")
 print(sdm.description_attribute(subject, dataModel, attribute))
 
 # List data-type of an attribute
+print("7 : ")
 print(sdm.datatype_attribute(subject, dataModel, attribute))
 
 # Give reference model for an attribute
+print("8 : ")
 print(sdm.model_attribute(subject, dataModel, attribute))
 
 # Give reference units for an attribute
+print("9 : ")
 print(sdm.units_attribute(subject, dataModel, attribute))
 
 # List the attributes of a data model
+print("10 : ")
 print(sdm.attributes_datamodel(subject, dataModel))
 
 # List the NGSI type (Property, Relationship or Geoproperty) of the attribute
+print("11 : ")
 print(sdm.ngsi_datatype_attribute(subject, dataModel, attribute))
 
 # Validate a json schema defining a data model
+print("12 : ")
 print(sdm.validate_data_model_schema(schemaUrl))
 
 # Print a list of data models attributes separated by a separator
+print("13 : ")
 print(sdm.print_datamodel(subject, dataModel, ",", [
         "property",
         "type",
@@ -96,26 +150,55 @@ print(sdm.print_datamodel(subject, dataModel, ",", [
     ]))
 
 # Returns the link to the repository of a subject
+print("14 : ")
 print(sdm.subject_repolink(subject))
 
 # Return the links to the repositories of a data model name
+print("15 : ")
 print(sdm.datamodel_repolink(dataModel))
 
 # Update the official data model list or the database of attributes from the source
 # It will take a while
+print("16 : ")
 sdm.update_data()
 
 # Return a fake normalized ngsi-ld format example based on the given json schema
+print("17 : ")
 print(sdm.ngsi_ld_example_generator(schemaUrl))
 
 # Return a fake key value ngsi-ld format example based on the given json schema
+print("18 : ")
 print(sdm.ngsi_ld_keyvalue_example_generator(schemaUrl))
 
 # Return a fake geojson feature format example based on the given json schema
+print("19 : ")
 print(sdm.geojson_features_example_generator(schemaUrl))
 
 # Update a broker compliant with a specific data model, inspired by Antonio Jara
+print("20 : ")
 print(sdm.update_broker(dataModel, subject, attribute, value, serverUrl=serverUrl, updateThenCreate=True))
+
+# Generate a SQL export based on the model.yaml (yaml export of the schema of a data model)   
+print("21 : ")
+print(sdm.generate_sql_schema(modelYaml))
+
+# Look for a data model name 
+print("22 : ")
+print(sdm.look_for_datamodel("WeatherFora", 84))
+
+# retrieve the metadata, context, version, model tags, schema, yaml schema, title, description, $id, required, examples, adopters, contributors and sql export of a data model
+print("23 : ")
+print(sdm.list_datamodel_metadata(dataModel, subject))
+
+# retrieve the metadata, context, version, model tags, schema, yaml schema, title, description, $id, required, examples, adopters, contributors and sql export of a data model
+print("23 : ")
+print(sdm.list_datamodel_metadata(dataModel, subject))
+
+print("24:")
+print(sdm.validate_dcat_ap_distribution_sdm(content_DCAT))
+
+print("25:")
+print(sdm.subject_for_datamodel(dataModel))
 
 ```
 
@@ -143,7 +226,7 @@ print(sdm.update_broker(dataModel, subject, attribute, value, serverUrl=serverUr
         - dataModel: the data model this attribute is present
         - repoName: the subject this data model belongs to
         - description: the description of the attribute
-        - typeNGSI: Whether it is a property, Geoproperty, or relationship
+        - typeNGSI: Whether it is a Property, GeoProperty, or Relationship
         - modelTags: inherited from the data model tags
         - license: link to the license for the data model
         - schemaVersion: version of the data model
@@ -256,7 +339,7 @@ print(sdm.update_broker(dataModel, subject, attribute, value, serverUrl=serverUr
           if any of the input parameters is not found
             False
 
-11- List the NGSI type (Property, Relationship or Geoproperty) of the attribute. Function ngsi_datatype_attribute(subject, datamodel, attribute)
+11- List the NGSI type (Property, Relationship or GeoProperty) of the attribute. Function ngsi_datatype_attribute(subject, datamodel, attribute)
 
         List the NGSI data type of an attribute (Property, Relationship or Geoproperty) belonging to a subject and data model.
         Parameters:
@@ -420,8 +503,93 @@ Function ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str
 
       Returns:
         str: A string containing the PostgreSQL schema SQL script.
-    """
+    
 
+22- Look for a data model based on a string of text, including approximate search 
+
+      Parameters:
+        - datamodel_search_text: piece of string with a text to be searched across the name of the data model of the SDM (It can be a part of the data model name)
+        - approx_percentage: optional parameter, in case a non-exact matching is required, percentage of likelikhood between 0 and 100. i.e. 90 means quite similar. Example Weather is 64% similar to WeatherObserved, or 74% to WeatherAlert
+
+    Returns:
+        - An array with the values of the matching data models names
+    
+
+23- Look for the metadata data models that match the text included
+
+       Parameters:
+           - datamodel: Exact name of the data model
+           - subject: Exact name of the subject
+
+       Returns:
+           - An object  with the metadata available for this data model in the different subjects
+                -   version ["version"]
+                i.e. "0.0.2"
+                -   model Tags ["modelTags"]
+                i.e. "GreenMov"
+                -   title of the data model ["title"]
+                i.e. "Smart Data Models. User Context schema" 
+                -   $id single link to the schema ["$id"]
+                i.e. https://smart-data-models.github.io/dataModel.User/UserContext/schema.json"
+                -   description del data model ["description"]
+                i.e. "Information on the context of an anonymized in a given point in time"
+                -   required attributes (array) ["required"]
+                i.e. ["id", "type"]
+                -   yamlUrl link to the yaml version of the schema (model.yaml) ["yamlUrl"]
+                i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/model.yaml
+                -   jsonSchemaUrl link to the schema (schema.json) ["jsonSchemaUrl"]
+                i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/schema.json"
+                -   @context location of the @context of the subject. ["@context"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/context.jsonld"
+                - exampleKeyvaluesJson link to the example in key values for NGSI v2 (json) ["exampleKeyvaluesJson"] 
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/examples/example.json"
+                 - exampleKeyvaluesJsonld link to the example in key values for NGSI LD (jsonld) ["exampleKeyvaluesJsonld"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/examples/example.jsonld"
+                 - exampleNormalizedJson link to the example in normalized for NGSI v2 (json) ["exampleNormalizedJson"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/examples/example-normalized.json"
+                 - exampleNormalizedJsonld link to the example in normalized for NGSI LD (jsonld) ["exampleNormalizedJsonld"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/examples/example-normalized.jsonld"
+                 - sql sql export of the schema. ["sql"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/schema.sql"
+                 - adopters	list of the adopters of the data model ["adopters"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/UserContext/ADOPTERS.yaml"
+                 - contributors	list of the contributors of the subject ["contributors"]
+                i.e. "https://raw.githubusercontent.com/smart-data-models/dataModel.User/master/CONTRIBUTORS.yaml"
+
+                And the specifications in the differente languages 
+                - English ["spec"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec.md
+                - German ["spec_DE"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_DE.md
+                - Spanish ["spec_ES"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_ES.md
+                - French ["spec_FR"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_FR.md
+                - Italian ["spec_IT"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_IT.md
+                - Japanese ["spec_JA"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_JA.md
+                - Korean ["spec_KO"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_KO.md
+                - Chinese ["spec_ZH"] i.e. https://raw.githubusercontent.com/smart-data-models/dataModel.Weather/master/WeatherForecast/doc/spec_ZH.md
+
+           - if the data model is not found it returs False
+
+24.- Validates a DCAT-AP registry by using its conformsTo if the conformsTo points to a smart data model schema
+
+    Parameters:
+           json_data: metadata in DCAT-AP distribution format (See https://github.com/smart-data-models/dataModel.DCAT-AP/blob/master/Distribution/schema.json and
+           https://semiceu.github.io/DCAT-AP/releases/3.0.0/
+                conformsTo: Attribute (Array) with links to the json schemas of SDM
+                downloadURL: Public available link to the raw format of the payload
+
+       Returns:
+           It prints a version of the attributes separated by the separator listing the meta_attributes specified
+           A variable with the same strings
+           if any of the input parameters is not found it returns False
+
+25- Look for the subjects corresponding to a data model name  
+
+      Parameters:
+           datamodel: name of the data model
+
+       Returns:
+           An array (always) if there is only one element with the names of the subjects
+           Usually only one element in the array isa returned because there are few clashes in data model names
+           False if no subject is found         
 
 ## Pending features (glad to receive contributions to them)
 

@@ -1,5 +1,5 @@
 {
-  "updatedDate": "2024-01-16T02:14:00.31416",
+  "updatedDate": "2025-06-10T17:25:00.31416",
   "officialList": [
     {
       "repoName": "dataModel.User",
@@ -91,11 +91,13 @@
         "AgriApp",
         "AgriCrop",
         "AgriFarm",
+        "AgriFertilize",
         "AgriGreenhouse",
         "AgriParcel",
         "AgriParcelOperation",
         "AgriParcelRecord",
         "AgriPest",
+        "AgriPhytosanitary",
         "AgriProductType",
         "AgriSoil",
         "Animal",
@@ -236,8 +238,13 @@
         "DeviceMeasurement",
         "DeviceModel",
         "DeviceOperation",
+        "Modbus",
+        "PolarH10",
         "PrivacyObject",
-        "SmartMeteringObservation"
+        "SenseHat",
+        "SenseHat",
+        "SmartMeteringObservation",
+        "UWBAnchor"
       ],
       "domains": [
         "Smart-Sensoring"
@@ -858,6 +865,7 @@
         "EOAnalysis",
         "EODataHub",
         "EOGeoDataLayer",
+        "EOSatelliteImagery",
         "EOInstrument",
         "EOProduct",
         "EOSatellitePlatform"
@@ -926,6 +934,7 @@
       "repoName": "dataModel.OPCUA",
       "repoLink": "https://github.com/smart-data-models/dataModel.OPCUA.git",
       "dataModels": [
+        "MachineTool",
         "MotionDeviceSystem",
         "WoodworkingMachine"
       ],
@@ -995,7 +1004,7 @@
     },
     {
       "repoName": "dataModel.MachineLearning",
-      "repoLink": "https://github.com/smart-data-models/dataModel.DistributedLedgerTech.git",
+      "repoLink": "https://github.com/smart-data-models/dataModel.MachineLearning.git",
       "dataModels": [
         "MLModel",
         "MLProcessing",
@@ -1013,12 +1022,13 @@
         "WifiPointOfInterest"
       ],
       "domains": [
+        "CrossSector",
         "SmartCities"
       ]
     },
     {
       "repoName": "dataModel.RoboticIndustrialActivities",
-      "repoLink": "https://github.com/smart-data-models/RoboticIndustrialActivities.git",
+      "repoLink": "https://github.com/smart-data-models/dataModel.RoboticIndustrialActivities.git",
       "dataModels": [
         "Pallet",
         "Piece",
@@ -1334,6 +1344,7 @@
       "repoName": "dataModel.CPSV-AP",
       "repoLink": "https://github.com/smart-data-models/dataModel.CPSV-AP.git",
       "dataModels": [
+        "Address",
         "BusinessEvent",
         "Cost",
         "CriterionRequirement",
@@ -1375,8 +1386,11 @@
       "repoName": "dataModel.MarineTransport",
       "repoLink": "https://github.com/smart-data-models/dataModel.MarineTransport.git",
       "dataModels": [
+        "Berth",
         "Booking",
         "EdiCodeco",
+        "MasterVessel",
+        "Operation",
         "Port",
         "PortAuthority",
         "PortCall",
@@ -1427,7 +1441,7 @@
     },
     {
       "repoName": "dataModel.DataQuality",
-      "repoLink": "https://github.com/smart-data-models/dataModels.DataQuality.git",
+      "repoLink": "https://github.com/smart-data-models/dataModel.DataQuality.git",
       "dataModels": [
         "DataQualityAssessment"
       ],
@@ -1620,7 +1634,7 @@
         "SmartLogistics"
       ]
     },
-     {
+    {
       "repoName": "dataModel.HumanResources",
       "repoLink": "https://github.com/smart-data-models/dataModel.HumanResources.git",
       "dataModels": [
@@ -1628,6 +1642,109 @@
       ],
       "domains": [
         "CrossSector"
+      ]
+    },
+    {
+      "repoName": "dataModel.AAS",
+      "repoLink": "https://github.com/smart-data-models/dataModel.AAS.git",
+      "dataModels": [
+        "I4AAS",
+        "I4Asset",
+        "I4Submodel",
+        "I4SubmodelElementOperation",
+        "I4SubmodelElementProperty",
+        "TimeSeries"
+      ],
+      "domains": [
+        "SmartManufacturing"
+      ]
+    },
+    {
+      "repoName": "dataModel.Gaia-X",
+      "repoLink": "https://github.com/smart-data-models/dataModel.Gaia-X.git",
+      "dataModels": [
+        "CPU",
+        "Disk",
+        "GPU",
+        "Memory"
+      ],
+      "domains": [
+        "CrossSector"
+      ]
+    },
+    {
+      "repoName": "dataModel.SmartDataModels",
+      "repoLink": "https://github.com/smart-data-models/dataModel.SmartDataModels.git",
+      "dataModels": [
+        "Attribute"
+      ],
+      "domains": [
+        "CrossSector"
+      ]
+    },
+    {
+      "repoName": "dataModel.DataSpace",
+      "repoLink": "https://github.com/smart-data-models/dataModel.DataSpace.git",
+      "dataModels": [
+        "InteroperableAssets"
+      ],
+      "domains": [
+        "CrossSector"
+      ]
+    },
+    {
+      "repoName": "dataModel.ZEB",
+      "repoLink": "https://github.com/smart-data-models/dataModel.ZEB.git",
+      "dataModels": [
+        "AirConditionerTerminal",
+        "Area",
+        "AreaEnvironmentForecast",
+        "Beacon",
+        "BuildingZEB",
+        "Column",
+        "DeviceForecast",
+        "Door",
+        "Elevator",
+        "Equipment",
+        "Fan",
+        "GatewayController",
+        "Glass",
+        "IndoorAirConditioner",
+        "Lighting",
+        "Material",
+        "MaterialLayer",
+        "Opening",
+        "OutdoorAirConditioner",
+        "OutdoorAirTreatingUnit",
+        "Room",
+        "Sensor",
+        "Slab",
+        "Stair",
+        "Storey",
+        "TotalHeatExchanger",
+        "Wall",
+        "WaterHeater",
+        "Window"
+      ],
+      "domains": [
+        "SmartCities"
+      ]
+    },
+    {
+      "repoName": "dataModel.PredictiveMaintenance",
+      "repoLink": "https://github.com/smart-data-models/dataModel.PredictiveMaintenance.git",
+      "dataModels": [
+        "AIPrediction",
+        "Appointment",
+        "InventoryItem",
+        "MachineComponent",
+        "MaintenanceRequest",
+        "MaintenanceService",
+        "MaintenanceSkill",
+        "ServiceTechnician"
+      ],
+      "domains": [
+        "SmartManufacturing"
       ]
     }
   ]

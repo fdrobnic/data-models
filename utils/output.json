@@ -1,27 +1,51 @@
 {
-    "id": "https://smart-data-models.github.io/dataModel.PointOfInterest/PointOfInterest/schema.json",
-    "@context": "iudx:PointOfInterest",
-    "type": [
-        "PointOfInterest"
-    ],
-    "name": {
-        "type": "string",
-        "value": "BMC Kiosk"
-    },
-    "additionalInfoURL": {
-        "type": "string",
-        "value": "https://voc.iudx.org.in/additionalInfoURL"
-    },
-    "municipalityInfo": {
-        "type": "object",
-        "value": {
-            "district": "Bangalore Urban",
-            "ulbName": "BMC",
-            "cityID": "23",
-            "stateName": "Karnataka",
-            "cityName": "Bangalore",
-            "zoneID": "2",
-            "wardNum": 4
-        }
-    }
+  "_id": {
+    "type": "string",
+    "value": "6557985a8f4f3ce5fd4e87df"
+  },
+  "id": "https://smartdatamodels.org/dataModel.Hl7/Account/_valueDate/extension#0.0.1",
+  "parentContext": {
+    "type": "string",
+    "value": "https://smartdatamodels.org/dataModel.Hl7/_valueDate"
+  },
+  "parentId": {
+    "type": "string",
+    "value": "https://smartdatamodels.org/dataModel.Hl7/Account/_valueDate#0.0.1"
+  },
+  "context": {
+    "type": "string",
+    "value": "https://smartdatamodels.org/dataModel.Hl7/extension"
+  },
+  "property": {
+    "type": "string",
+    "value": "extension"
+  },
+  "dataModel": {
+    "type": "string",
+    "value": "Account"
+  },
+  "repoName": {
+    "type": "string",
+    "value": "dataModel.Hl7"
+  },
+  "modelTags": {
+    "type": "string",
+    "value": "HL7"
+  },
+  "license": {
+    "type": "string",
+    "value": "https://github.com/smart-data-models/dataModel.Hl7/blob/master/Account/LICENSE.md"
+  },
+  "schemaVersion": {
+    "type": "string",
+    "value": "0.0.1"
+  },
+  "dataType": {
+    "type": "string",
+    "value": "array"
+  },
+  "description": {
+    "type": "string",
+    "value": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension"
+  }
 }
