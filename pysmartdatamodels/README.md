@@ -609,6 +609,6 @@ if you want to suggest other functions/ needs please let us know at info@smartda
 
 Special thanks to the following contributors:
 
-- [fdrobnic](https://github.com/fdrobnic): Changes for porting to Windows
+- [fdrobnic](https://github.com/fdrobnic): Changes for porting to Windows and a function for generating a fake example from a non-published schema
 - [Antonio Jara](https://twitter.com/Antonio_Jara): New function for inserting data into broker
 - [María José Bernal](mj.bernal@libelium.com): Necessary extension for function update_broker() to allow updating nonexistent attribute into broker
