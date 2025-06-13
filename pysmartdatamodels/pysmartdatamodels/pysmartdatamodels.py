@@ -842,7 +842,6 @@ def ngsi_ld_example_generator(schema_url: str):
     payload = open_jsonref(schema_url)
     if payload == "": return False
 
-<<<<<<< master
     return ngsi_ld_example_generator_str(payload, dataModel, subject)
 
 def ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str):
@@ -862,8 +861,6 @@ def ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str):
     if dataModel == "" or subject == "":
         return False
 
-=======
->>>>>>> master
     output = {}
     tz = pytz.timezone("Europe/Madrid")
 
@@ -882,13 +879,9 @@ def ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str):
 
     # print(payload["allOf"])
     fullDict = {}
-<<<<<<< master
-    # echo("payload", payload)
     fullDict['id'] = {}
-=======
 
     # Parse the "allOf", "anyOf", "oneOf" structure
->>>>>>> master
     if "allOf" in payload:
         for index in range(len(payload["allOf"])):
             if "properties" in payload["allOf"][index]:
@@ -921,15 +914,9 @@ def ngsi_ld_example_generator_str(schema: str, dataModel: str, subject: str):
             output = {**output, **{prop: parsedProperty}}
         else:
             output = {**output, **{prop: parsedProperty}}
-<<<<<<< master
-        # echo("output", output)
-    output["@context"] = [create_context('dataModel.' + dataModel)]
-    # print("======================")
-    # print(json.dumps(output))
-=======
 
-    output["@context"] = [create_context(subject)]
->>>>>>> master
+    output["@context"] = [create_context('dataModel.' + dataModel)]
+    # output["@context"] = [create_context(subject)]
 
     return output
 
@@ -1287,8 +1274,6 @@ def generate_sql_schema(model_yaml: str) -> str:
     print(result)
 
     return result
-<<<<<<< master
-=======
 
 
 # 22
@@ -1678,4 +1663,3 @@ def validate_payload(datamodel, subject, payload):
         return [False, "datamodel/subject not found"]
 # result = validate_payload("WeatherObserved", "dataModel.Weather", "")
 # print(result)
->>>>>>> master
