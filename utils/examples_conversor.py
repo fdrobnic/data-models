@@ -17,6 +17,7 @@
 # This program takes either a keyvalues payload and converts it into a normalized version and the other way round
 import json
 
+
 def normalized2keyvalues(normalizedPayload):
     import json
     normalizedDict = normalizedPayload
@@ -101,72 +102,161 @@ def keyvalues2normalized(keyvaluesPayload):
         output["@context"] = output["@context"]["value"]
     print(output)
     with open("output.json", "w") as outputfile:
-        rawoutput = json.dumps(output, indent=4)
+        rawoutput = json.dumps(output, indent=2)
         outputfile.write(rawoutput)
     return output
 
 
-keyvaluesPayload = {
-  "id": "0.E.6.AY1.A1",
-  "type": "Action",
-  "refProject": "O.E.6.AY1",
-  "dateCreated": "2016-08-08T10:18:16Z",
-  "dateModified": "2016-08-08T10:18:16Z",
-  "name": "Realizacion de campafias de promoci6n en medios de comunicaci6n de la provincia",
-  "executionPeriod": "2021S1",
-  "compliancePercentage": 0,
-  "modifications": "SIN MODIFICACION"
+keyvaluesPayload ={
+  "_id": "6557985a8f4f3ce5fd4e87df",
+  "id": "https://smartdatamodels.org/dataModel.Hl7/Account/_valueDate/extension#0.0.1",
+  "parentContext": "https://smartdatamodels.org/dataModel.Hl7/_valueDate",
+  "parentId": "https://smartdatamodels.org/dataModel.Hl7/Account/_valueDate#0.0.1",
+  "context": "https://smartdatamodels.org/dataModel.Hl7/extension",
+  "property": "extension",
+  "dataModel": "Account",
+  "repoName": "dataModel.Hl7",
+  "modelTags": "HL7",
+  "license": "https://github.com/smart-data-models/dataModel.Hl7/blob/master/Account/LICENSE.md",
+  "schemaVersion": "0.0.1",
+  "dataType": "array",
+  "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension"
 }
 
 
 normalizedPayload = {
-    "id": "urn:ngsi-ld:AttributeProperty:a3003",
-    "type": "AttributeProperty",
-    "language": {
-        "type": "Property",
-        "value": [
-            "en",
-            "fr"
-        ]
-    },
-    "label": {
-        "type": "Property",
-        "value": {
-            "en": "SDMX attribute COMMENT_OBS",
-            "fr": "Attribut SDMX "
-        }
-    },
-    "concept": {
-        "type": "Relationship",
-        "value": "urn:ngsi-ld:Concept:c4303"
-    },
-    "created": {
-        "type": "Property",
-        "value": "2022-01-15T07:00:00+00:00"
-    },
-    "identifier": {
-        "type": "Property",
-        "value": "a3003"
-    },
-    "modified": {
-        "type": "Property",
-        "value": "2022-01-15T07:30:00+00:00"
-    },
-    "range": {
-        "type": "Property",
-        "value": "xsd:string"
-    },
-    "@context": [
-        "https://smart-data-models.github.io/dataModel.STAT-DCAT-AP/context.jsonld",
-        "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  "id": "urn:ngsi-ld:InteroperableAssets:id:WGEQ:22085426",
+  "type": "InteroperableAssets",
+  "dateCreated": {
+    "type": "Property",
+    "value": {
+      "@type": "DateTime",
+      "@value": "2024-04-22T01:37:25Z"
+    }
+  },
+  "dateModified": {
+    "type": "Property",
+    "value": {
+      "@type": "DateTime",
+      "@value": "2024-04-24T17:29:14Z"
+    }
+  },
+  "source": {
+    "type": "Property",
+    "value": "Sm4rtenance Project"
+  },
+  "name": {
+    "type": "Property",
+    "value": ""
+  },
+  "alternateName": {
+    "type": "Property",
+    "value": ""
+  },
+  "description": {
+    "type": "Property",
+    "value": ""
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": ""
+  },
+  "owner": {
+    "type": "Property",
+    "value": [
+      ""
     ]
+  },
+  "seeAlso": {
+    "type": "Property",
+    "value": [
+      ""
+    ]
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        40.41,
+        3.7033
+      ]
+    }
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "",
+      "addressLocality": "Madrid",
+      "addressRegion": "Madrid",
+      "addressCountry": "Spain",
+      "postalCode": "28050",
+      "postOfficeBoxNumber": "",
+      "streetNr": "",
+      "district": ""
+    }
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": ""
+  },
+  "dataSpaceIdentifier": {
+    "type": "Property",
+    "value": "SM4RTENANCE"
+  },
+  "dataExchangeProtocols": {
+    "type": "Property",
+    "value": [
+      {
+        "name": "Link Data event stream",
+        "description": "A Linked Data Event Stream (LDES) is a technical standard that applies linked data principles to data streams, allowing for the exchange of data between silos in a sustainable and cost-effective manner. It is defined as a collection of immutable objects, called LDES members, described using the Resource Description Framework (RDF). LDES enables data publishers to publish their datasets as append-only collections, allowing consumers to replicate the full dataset and keep it synchronized, while also facilitating real-time updates and improving data usability and findability",
+        "identifier": "LDES",
+        "version": "1.0",
+        "documentation": [
+          "https://semiceu.github.io/LinkedDataEventStreams/"
+        ]
+      },
+      {
+        "name": "NGSI LD",
+        "description": "NGSI-LD is an information model and API for publishing, querying, and subscribing to context information, standardized by ETSI to facilitate open exchange and sharing of structured data across various domains. It represents context information as entities with properties and relationships, using a property graph model with semantics based on RDF and the semantic web framework. NGSI-LD builds upon previous context management frameworks and can be serialized using JSON-LD, making it compatible with linked data principles and allowing for unique IRI identifiers for entities and relationships",
+        "identifier": "NGSI-LD.1.6",
+        "version": "1.6",
+        "documentation": [
+          "https://www.etsi.org/deliver/etsi_gs/CIM/001_099/009/01.06.01_60/gs_CIM009v010601p.pdf"
+        ]
+      }
+    ]
+  },
+  "dataModelSources": {
+    "type": "Property",
+    "value": [
+      {
+        "name": "Smart Data Models",
+        "description": "The Smart Data Models initiative is a collaborative effort led by FIWARE Foundation, TM Forum, IUDX, and OASC to create and promote standardized, interoperable data models across multiple sectors. It aims to support a digital marketplace of smart solutions by developing common, royalty-free data models that are publicly available. The initiative focuses on using JSON Schema as a core component, enabling exports in various formats to enhance compatibility with semantic and linked data approaches. By providing these open-licensed, standardized data models, the initiative seeks to combat data silos, improve data sharing, and facilitate application portability across different platforms and sectors, ultimately fostering innovation and interoperability in smart solutions.",
+        "identifier": "Smart-Data-Models",
+        "internalIdentifier": "WeatherObserved",
+        "version": "0.3",
+        "documentation": [
+          "https://github.com/smart-data-models/dataModel.Weather/blob/master/WeatherObserved/doc/spec.md"
+        ]
+      }
+    ]
+  },
+  "@context": [
+    "https://smart-data-models.github.io/dataModel.DataSpace/context.jsonld"
+  ]
 }
 
-# payload = normalized2keyvalues(normalizedPayload)
-# print(payload)
-# with open("example-normalized.json", "w") as file:
-#     json.dump(payload, file)
 
-schema = keyvalues2normalized(keyvaluesPayload)
+
+
+
+
+payload = normalized2keyvalues(normalizedPayload)
+# print(payload)
 with open("keyvalues.json", "w") as file:
-    json.dump(schema, file)
+    json.dump(payload, file, indent=2)
+
+# schema = keyvalues2normalized(keyvaluesPayload)
+# with open("example-normalized.json", "w") as file:
+#     json.dump(schema, file, indent=2)
